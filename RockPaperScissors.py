@@ -1,3 +1,5 @@
+"""ROCK, PAPER, SCISSORS"""
+
 import random
 from termcolor import cprint
 
@@ -6,7 +8,7 @@ choices = ['rock', 'paper', 'scissors']
 
 
 def get_user_inputs():
-    ### Player Input
+    """Player Input"""
     while True:
         player_input = input('Please type rock, paper, or scissors:\n')
         player_input = player_input.lower()
@@ -17,7 +19,7 @@ def get_user_inputs():
             return player_input
 
 def get_computer_input():
-    ### Computer Input
+    """Computer Input"""
     possible_choices = choices
     computer_input = random.choice(possible_choices)
     computer_input = computer_input.lower()
@@ -47,6 +49,7 @@ rule_map = {
 ### Rules                 
 
 def play_once_v2():
+    """RPS game engine V2"""
     player_input = get_user_inputs()
     computer_input = get_computer_input()
     result = rule_map.get((player_input, computer_input))
@@ -76,12 +79,12 @@ def play_once():
         print('Please try again. Fully spell your option')
 
 
-def print_banner():
+def _print_banner():
     print('Welcome to Rock Paper Scissors!')
 
 
 def main():
-    print_banner()
+    _print_banner()
     play_again = 'Y'
     while True:
         if play_again == 'Y':
