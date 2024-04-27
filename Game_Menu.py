@@ -3,15 +3,17 @@
 #DONE at the end of the game, if they chose not to play again, return to game menu
 #DONE add time buffer and 'game loading...' to after game is chosen
 #DONE print f string you have chosen X game
+#TODO Update Blackjack to Class and remove 54+55
 
-from RockPaperScissors import main as rps_main
+from RockPaperScissors import RockPaperScissors, TigerStickChicken
 from Blackjack import main as bj_main
 from termcolor import cprint
 import time
 
 menu_options = [
     'Exit',
-    'Rock, Paper, Scissors',
+    RockPaperScissors,
+    TigerStickChicken,
     'Blackjack',
 ]
 
@@ -20,7 +22,7 @@ def _print_banner():
     print("Welcome to Zelle's GameHub, a collection of games that Zelle coded as her introduction project to Python.\n"
           "The following games are available to play:\n")
     for idx, option in enumerate(menu_options):
-        print(f'({idx}) {option}')
+        print(f'({idx}) {option if isinstance(option, str) else option.name}')
 
 def main():
     """MAIN FUNCTION:
@@ -47,8 +49,8 @@ def choice_of_game():
     game_choice = menu_options[idx]
     print(f'You have chosen to play {game_choice}')
 
-    if game_choice == 'Rock, Paper, Scissors': 
-        return rps_main
+    if isinstance(game_choice, type):
+        return game_choice().main
     elif game_choice == 'Blackjack':
         return bj_main
     
